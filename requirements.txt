@@ -1,0 +1,9 @@
+beautifulsoup4
+blinker
+Flask
+Flask-Caching
+Flask-Dance
+mf2py
+requests
+toml
+webargs
