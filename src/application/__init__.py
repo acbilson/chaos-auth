@@ -18,13 +18,14 @@ def create_app():
 
     with app.app_context():
         # import parts of the app
-        # from .core import core
-        # from .api import api
+        from .core import core
+        from .api import api
 
         # register blueprints
-        # app.register_blueprint(core.core_bp)
-        # app.register_blueprint(api.api_bp)
+        app.register_blueprint(core.core_bp)
+        app.register_blueprint(api.api_bp)
 
+        # registers github blueprint from flask-dance
         github_blueprint = make_github_blueprint(
             client_id=app.config['CLIENT_ID'],
             client_secret=app.config['CLIENT_SECRET'],
