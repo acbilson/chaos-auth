@@ -3,7 +3,7 @@ from flask_dance.contrib.github import make_github_blueprint, github
 from flask_caching import Cache
 import sys
 import logging
-from logging import StreamHandler
+from logging import StreamHandler, FileHandler
 
 # globally accessible libraries
 cache = None
@@ -42,6 +42,7 @@ def create_app():
 def config_log(app):
     """ Configure logging for this application """
     stream_handler = StreamHandler(sys.stdout)
+    file_handler = FileHandler('/var/log/auth.out.log')
 
     if app.debug:
         app.logger.setLevel(logging.DEBUG)
@@ -49,5 +50,6 @@ def config_log(app):
         app.logger.setLevel(logging.INFO)
 
     app.logger.addHandler(stream_handler)
+    app.logger.addHandler(file_handler)
     return app
 
