@@ -1,0 +1,17 @@
+FLASK_ENV = "development"
+
+SESSION_SECRET = "mysessionsecret"
+SECRET_KEY = "mysecret"
+
+LOCAL = "http://0.0.0.0:5000"
+REMOTE = "http://localhost:9002"
+BASE_SITE = "http://localhost:8080"
+
+CACHE_TYPE = "filesystem"
+CACHE_DIR = "/tmp/cache"
+CACHE_DEFAULT_TIMEOUT = 600
+
+[oauth]
+  [oauth.github]
+  client_id = "my-github-client-id"
+  client_secret = "my-github-client-secret"
