@@ -10,8 +10,8 @@ remote = app.config['REMOTE']
 local_url = urlparse(local)
 host, port = local_url.netloc.split(':')
 
-print(f"Flask app running in {env} at {local}")
-print(f"View the site at {remote}")
+app.logger.info(f"Flask app running in {env} at {local}")
+app.logger.info(f"View the site at {remote}")
 
 if __name__ == "__main__":
     app.run(

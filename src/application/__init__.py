@@ -1,6 +1,9 @@
 from flask import Flask
 from flask_dance.contrib.github import make_github_blueprint, github
 from flask_caching import Cache
+import sys
+import logging
+from logging import StreamHandler
 
 # globally accessible libraries
 cache = None
@@ -9,6 +12,7 @@ def create_app():
     """Initialize the core application"""
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_object('config.Config')
+    app = config_log(app)
 
     # required to encrypt session
     app.secret_key = app.config['SECRET_KEY']
@@ -32,4 +36,18 @@ def create_app():
         )
         app.register_blueprint(github_blueprint, url_prefix="/login")
 
+        app.logger.info('initialized auth app')
         return app
+
+def config_log(app):
+    """ Configure logging for this application """
+    stream_handler = StreamHandler(sys.stdout)
+
+    if app.debug:
+        app.logger.setLevel(logging.DEBUG)
+    else:
+        app.logger.setLevel(logging.INFO)
+
+    app.logger.addHandler(stream_handler)
+    return app
+
