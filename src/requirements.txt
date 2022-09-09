@@ -1,0 +1,8 @@
+Flask-HTTPAuth
+Flask-CORS
+Flask
+PyJWT
+uwsgi
+python-dotenv
+requests
+black
